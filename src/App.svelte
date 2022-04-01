@@ -1,5 +1,8 @@
 <script>
+	import ContactCard from "./ContactCard.svelte";
 	let name = 'Sarunas';
+	let jobTitle ='web dev'
+	let description ='some random description'
 	let age = 34;
 
 	$: uppercaseName = name.toUpperCase ();
@@ -20,16 +23,24 @@
 		const enteredValue = event.target.value;
 		name = enteredValue;
 	}
+	function jobTitleInput(event) {
+		const enteredJobTitle = event.target.value;
+		jobTitle = enteredJobTitle;
+	}
 
 </script>
 
 <main>
 	<h1> Hello {uppercaseName}, my age is {age}!</h1>
 	<button on:mouseenter="{incrementAge}"> Change Age</button>
-	<button on:click="{changeName}"> Change Name</button>
+	<!-- <button on:click="{changeName}"> Change Name</button> -->
 	<!-- <input type="text" value="{name}" on:input="{nameInput}"/> -->
 	<!-- shorter version, good for forms etc -->
 	<input type="text" bind:value="{name}" />
+	<input type="text" bind:value="{jobTitle}" />
+
+	<ContactCard userName="{name}" userJobTitle="{jobTitle}"/>
+
 
 </main>
 

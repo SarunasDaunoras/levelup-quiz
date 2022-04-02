@@ -1,8 +1,9 @@
 <script>
 	import ContactCard from "./ContactCard.svelte";
 	let name = 'Sarunas';
-	let jobTitle ='web dev'
-	let description ='some random description'
+	let userImage =""
+	let title =""
+	let description =""
 	let age = 34;
 
 	$: uppercaseName = name.toUpperCase ();
@@ -19,27 +20,33 @@
 		name = 'SarunasDaunoras'
 	}
 
-	function nameInput(event) {
-		const enteredValue = event.target.value;
-		name = enteredValue;
-	}
-	function jobTitleInput(event) {
-		const enteredJobTitle = event.target.value;
-		jobTitle = enteredJobTitle;
-	}
+	// function nameInput(event) {
+	// 	const enteredValue = event.target.value;
+	// 	name = enteredValue;
+	// }
+	// only needed if using the value and oninput binding
+
 
 </script>
 
 <main>
 	<h1> Hello {uppercaseName}, my age is {age}!</h1>
-	<button on:mouseenter="{incrementAge}"> Change Age</button>
-	<!-- <button on:click="{changeName}"> Change Name</button> -->
-	<!-- <input type="text" value="{name}" on:input="{nameInput}"/> -->
-	<!-- shorter version, good for forms etc -->
-	<input type="text" bind:value="{name}" />
-	<input type="text" bind:value="{jobTitle}" />
-
-	<ContactCard userName="{name}" userJobTitle="{jobTitle}"/>
+	<div class="inputs">
+		<button on:mouseenter="{incrementAge}"> Change Age</button>
+		<!-- <button on:click="{changeName}"> Change Name</button> -->
+		<!-- <input type="text" value="{name}" on:input="{nameInput}"/> -->
+		<!-- shorter version, good for forms etc -->
+		<input type="text" bind:value="{name}" />
+		<input type="text" bind:value="{title}" />
+		<input type="text" bind:value="{userImage}" />
+		<textarea rows="3" bind:value="{description}" textarea/>
+	</div>
+	<ContactCard 
+		userName="{name}" 
+		userJobTitle="{title}" 
+		userDescription="{description}" 
+		{userImage}
+	/>
 
 
 </main>
@@ -63,5 +70,10 @@
 		main {
 			max-width: none;
 		}
+	}
+	.inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
 	}
 </style>

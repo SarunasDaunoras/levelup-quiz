@@ -1,6 +1,8 @@
 <script>
   export let userName;
   export let userJobTitle;
+  export let userDescription;
+  export let userImage;
 </script>
 
 
@@ -22,6 +24,10 @@
   .thumb {
     width: 33%;
     height: 100%;
+  }
+
+  .thumb-placeholder{
+    background-color: aqua;
   }
 
   img {
@@ -59,8 +65,9 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
-      <img src="" alt="" />
+    <div class="thumb" class:thumb-placeholder="{!userImage}">
+      <!-- <div class="{userImage ? 'thumb' : 'thumb thumb-placeholder'}"> -->
+      <img src="{userImage}" alt="{userName}" />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
@@ -68,6 +75,6 @@
     </div>
   </header>
   <div class="description">
-    <p>A short description</p>
+    <p>{userDescription}</p>
   </div>
 </div>
